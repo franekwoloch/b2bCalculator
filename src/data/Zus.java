@@ -12,16 +12,41 @@ public class Zus {
     private double jobFound;
     private double costFee;
     private double totalFee;
-    public static final double healthyDeprecation=275.51; //Pomniejszenie PIT
+    private double healthyBase=3554.93;
+    public static double healthyDeprecation=0.075*getHealthyBase(); //Pomniejszenie PIT
+
+
 
     //CONSTRUCOR
 
-    public Zus (double benefit){
+      public Zus (double benefit){
         setBenefit(benefit);
-        base=1.413271752*benefit;
+        setBase(1.413271752*benefit);
+        setHealthyFee(0.09*getHealthyBase());
     }
 
+
+//METHODS
+
+    public double costFee() {
+        setRetireFee(0.1952 * getBase()); //Składka emerytalna 19.52%
+        setDisabilityFee(0.08*getBase()); //Składka rentowa 8%;
+        setIllnessFee(0.0245*getBase()); //Składka chorobowa 2.45%
+        setAccidentFee(0.018*getBase());//składka wypadkowa 1.8%
+        setCostFee(getRetireFee()+getDisabilityFee()+getIllnessFee()+getAccidentFee()); //Składka stanowiąca koszt
+        return getCostFee();
+    }
+
+    public double totalFee() {
+        setJobFound(0.0245*getBase()); //Fundusz pracy 2.45%
+        setTotalFee(getHealthyFee()+getCostFee()+getJobFound()); //Łączna suma składek
+        return getTotalFee();
+    }
+
+
+
     //SETTER&GETTERS:
+
     public double getBenefit() {
         return benefit;
     }
@@ -30,20 +55,85 @@ public class Zus {
         this.benefit = benefit;
     }
 
-    public double costFee() {
-        healthyFee = 319.94;
-        retireFee = 0.1952 * base; //Składka emerytalna 19.52%
-        disabilityFee=0.08*base; //Składka rentowa 8%;
-        illnessFee=0.0245*base; //Składka chorobowa 2.45%
-        accidentFee=0.018*base;//składka wypadkowa 1.8%
-        costFee=retireFee+disabilityFee+illnessFee+accidentFee; //Składka stanowiąca koszt
+
+    public double getBase() {
+        return base;
+    }
+
+    public void setBase(double base) {
+        this.base = base;
+    }
+
+    public double getHealthyFee() {
+        return healthyFee;
+    }
+
+    public void setHealthyFee(double healthyFee) {
+        this.healthyFee = healthyFee;
+    }
+
+    public double getRetireFee() {
+        return retireFee;
+    }
+
+    public void setRetireFee(double retireFee) {
+        this.retireFee = retireFee;
+    }
+
+    public double getDisabilityFee() {
+        return disabilityFee;
+    }
+
+    public void setDisabilityFee(double disabilityFee) {
+        this.disabilityFee = disabilityFee;
+    }
+
+    public double getIllnessFee() {
+        return illnessFee;
+    }
+
+    public void setIllnessFee(double illnessFee) {
+        this.illnessFee = illnessFee;
+    }
+
+    public double getAccidentFee() {
+        return accidentFee;
+    }
+
+    public void setAccidentFee(double accidentFee) {
+        this.accidentFee = accidentFee;
+    }
+
+    public double getJobFound() {
+        return jobFound;
+    }
+
+    public void setJobFound(double jobFound) {
+        this.jobFound = jobFound;
+    }
+
+    public double getCostFee() {
         return costFee;
     }
 
-    public double totalFee() {
-        jobFound=0.0245*base; //Fundusz pracy 2.45%
-        totalFee=healthyFee+costFee+jobFound; //Łączna suma składek
+    public void setCostFee(double costFee) {
+        this.costFee = costFee;
+    }
+
+    public double getTotalFee() {
         return totalFee;
+    }
+
+    public void setTotalFee(double totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public double getHealthyBase() {
+        return healthyBase;
+    }
+
+    public void setHealthyBase(double healthyBase) {
+        this.healthyBase = healthyBase;
     }
 
 }
