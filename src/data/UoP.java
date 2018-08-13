@@ -15,17 +15,30 @@ public class UoP {
         setSalary(salary);
         setEmployeeCost(cost);
         Zus zus = new Zus(salary);
-        employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()+zus.getIllnessFee();
+        employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         zus.setHealthyBase(salary-employeeZus);
         totalCost=zus.getHealthyFee()+employeeZus+cost;
         Pit pit = new Pit(salary, totalCost);
         setPayment(pit.getIncome());
-        setEmployerCost(salary+zus.getRetireFee()/2+);
+        setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
 
     }
 
 
+    public UoP UoPNetto (double payment, double cost){
+        protected double totalCost;
+        protected double employeeZus;
+        setSalary(salary);
+        setEmployeeCost(cost);
+        Zus zus = new Zus(salary);
+        employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
+        zus.setHealthyBase(salary-employeeZus);
+        totalCost=zus.getHealthyFee()+employeeZus+cost;
+        Pit pit = new Pit(salary, totalCost);
+        setPayment(pit.getIncome());
+        setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
 
+    }
 
 
 
