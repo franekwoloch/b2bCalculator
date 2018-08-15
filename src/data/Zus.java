@@ -14,15 +14,27 @@ public class Zus {
     private double totalFee;
     private double healthyBase=3554.93;
     private double fgspFee;
-    public static double healthyDeprecation=0.075*getHealthyBase(); //Pomniejszenie PIT
+    public double healthyDeprecation=0.075*getHealthyBase(); //Pomniejszenie PIT
 
 
 
     //CONSTRUCOR
 
-      public Zus (double benefit){
+      public void zusBenefit (double benefit){
         setBenefit(benefit);
         setBase(1.413271752*benefit);
+        setHealthyFee(0.09*getHealthyBase());
+        setRetireFee(0.1952 * getBase()); //Składka emerytalna 19.52%
+        setDisabilityFee(0.08*getBase()); //Składka rentowa 8%;
+        setIllnessFee(0.0245*getBase()); //Składka chorobowa 2.45%
+        setAccidentFee(0.018*getBase());//składka wypadkowa 1.8%
+        setJobFound(0.0245*getBase()); //Fundusz pracy 2.45%
+        setFgspFee(0.001*getBase());
+    }
+
+    public void zusBase (double base){
+        setBenefit(0.707578*base);
+        setBase(base);
         setHealthyFee(0.09*getHealthyBase());
         setRetireFee(0.1952 * getBase()); //Składka emerytalna 19.52%
         setDisabilityFee(0.08*getBase()); //Składka rentowa 8%;
@@ -42,7 +54,7 @@ public class Zus {
     }
 
     public double totalFee() {
-        setTotalFee(getHealthyFee()+getCostFee()+getJobFound()); //Łączna suma składek
+        setTotalFee(getHealthyFee()+getCostFee()+getJobFound()+getFgspFee()); //Łączna suma składek
         return getTotalFee();
     }
 
@@ -145,5 +157,13 @@ public class Zus {
 
     public void setFgspFee(double fgspFee) {
         this.fgspFee = fgspFee;
+    }
+
+    public double getHealthyDeprecation() {
+        return healthyDeprecation;
+    }
+
+    public void setHealthyDeprecation(double healthyDeprecation) {
+        this.healthyDeprecation = healthyDeprecation;
     }
 }

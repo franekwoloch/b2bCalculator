@@ -2,11 +2,12 @@ package data;
 
 public class UoP {
 
-    private double payment; //wynagrodzenie netto
+
+
     private double salary; //wynagrodzenie brutto
     private double employerCost; //koszt pracodawcy
     private double employeeCost;//koszt pracownika
-
+    private double profit;
 
 
     public UoP UoPBrutto (double salary, double cost){
@@ -14,46 +15,46 @@ public class UoP {
         protected double employeeZus;
         setSalary(salary);
         setEmployeeCost(cost);
-        Zus zus = new Zus(salary);
+        Zus zus = new Zus();
+        zus.zusBase(salary);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         zus.setHealthyBase(salary-employeeZus);
-        totalCost=zus.getHealthyFee()+employeeZus+cost;
-        Pit pit = new Pit(salary, totalCost);
-        setPayment(pit.getIncome());
+        totalCost=employeeZus+cost;
+        Pit pit = new Pit();
+        pit.pitincome(salary,totalCost, zus.getHealthyDeprecation());
+        setProfit(pit.getIncome()-zus.getHealthyFee());
         setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
 
     }
 
 
-    public UoP UoPNetto (double payment, double cost){
+    public UoP UoPNetto (double profit, double cost, double healthyDeprecation){
         protected double totalCost;
         protected double employeeZus;
-        setSalary(salary);
-        setEmployeeCost(cost);
-        Zus zus = new Zus(salary);
+        setProfit(profit);
+        Zus zus = new Zus();
+        zus.zusBenefit(profit);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
-        zus.setHealthyBase(salary-employeeZus);
-        totalCost=zus.getHealthyFee()+employeeZus+cost;
-        Pit pit = new Pit(salary, totalCost);
-        setPayment(pit.getIncome());
-        setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
+        totalCost=employeeZus+cost;
+        Pit pit = new Pit();
+        zus.setHealthyBase(profit);
+        pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
+        setSalary(profit+employeeZus+pit.getTax());
+        setEmployerCost(getSalary()+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
 
     }
-
-
-
 
 
 
 
     //SETTERS&GETTERS
 
-    public double getPayment() {
-        return payment;
+    public double getProfit() {
+        return profit;
     }
 
-    public void setPayment(double payment) {
-        this.payment = payment;
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 
     public double getSalary() {

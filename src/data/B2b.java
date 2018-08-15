@@ -14,26 +14,29 @@ public class B2b {
     public B2b invoiceB2b(double zusBenefit, double invoice) {
         setZusBenefit(zusBenefit);
         setInvoice(invoice);
-        Zus zus = new Zus(zusBenefit);
-        Pit pit = new Pit(invoice, zus.costFee());
-        profit = invoice - zus.totalFee() - pit.payPit();
+        Zus zus = new Zus();
+        zus.zusBenefit(getZusBenefit());
+        Pit pit = new Pit();
+        pit.pitincome(invoice, zus.costFee(), zus.getHealthyDeprecation());
+        profit = invoice - zus.totalFee() - pit.getTax();
         setProfit(profit);
-        setPitFee(pit.payPit());
+        setPitFee(pit.getTax());
         setZusFee(zus.totalFee());
         setEffectiveTax(profit/invoice);
     }
 
 
     public B2b profitB2b(double zusBenefit, double profit) {
-        private double tax;
         private double invoice;
         setZusBenefit(zusBenefit);
         setProfit(profit);
-        Zus zus = new Zus(zusBenefit);
-        tax=0.18*(profit+(zus.totalFee()-zus.costFee()))-zus.healthyDeprecation;
-        invoice=profit+zus.totalFee()+tax;
+        Zus zus = new Zus();
+        zus.zusBenefit(getZusBenefit());
+        Pit pit = new Pit();
+        pit.pitprofit(profit,zus.costFee(),zus.getHealthyDeprecation());
+        invoice=profit+zus.totalFee()+pit.getTax();
         setInvoice(invoice);
-        setPitFee(tax);
+        setPitFee(pit.getTax());
         setZusFee(zus.totalFee());
         setEffectiveTax(profit/invoice);
     }
