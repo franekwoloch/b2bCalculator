@@ -7,10 +7,10 @@ public class UoP {
     private double salary; //wynagrodzenie brutto
     private double employerCost; //koszt pracodawcy
     private double employeeCost;//koszt pracownika
-    private double profit;
+    private double profit; //wynagrodzenie netto
 
 
-    public UoP UoPBrutto (double salary, double cost){
+    public void UoPBrutto (double salary, double cost){
         protected double totalCost;
         protected double employeeZus;
         setSalary(salary);
@@ -28,7 +28,7 @@ public class UoP {
     }
 
 
-    public UoP UoPNetto (double profit, double cost, double healthyDeprecation){
+    public void UoPNetto (double profit, double cost, double healthyDeprecation){
         protected double totalCost;
         protected double employeeZus;
         setProfit(profit);
@@ -36,10 +36,10 @@ public class UoP {
         zus.zusBenefit(profit);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         totalCost=employeeZus+cost;
+        setSalary(1.18*(profit+totalCost));
+        zus.setHealthyBase(getSalary()-employeeZus);
         Pit pit = new Pit();
-        zus.setHealthyBase(profit);
         pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
-        setSalary(profit+employeeZus+pit.getTax());
         setEmployerCost(getSalary()+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
 
     }
