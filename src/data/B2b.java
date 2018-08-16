@@ -30,7 +30,7 @@ public class B2b extends Job {
         setProfit(invoice - zus.totalFee() - pit.getTax());
         setPitFee(pit.getTax());
         setZusFee(zus.totalFee());
-        setEffectiveTax(getProfit() / invoice);
+        setEffectiveTax((invoice-getProfit())/invoice*100);
 
     }
 
@@ -47,7 +47,7 @@ public class B2b extends Job {
         setSalary(invoice);
         setPitFee(pit.getTax());
         setZusFee(zus.totalFee());
-        setEffectiveTax(profit / invoice);
+        setEffectiveTax((invoice-getProfit())/invoice*100);
     }
 
 
