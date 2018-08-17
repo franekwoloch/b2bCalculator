@@ -1,7 +1,9 @@
 package utils;
 
 import data.B2b;
-import data.Magazine;
+import data.Cost;
+import data.UoP;
+
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,55 +18,67 @@ public class DataReader {
         sc.close();
     }
 
-    public B2b createB2b() throws InputMismatchException{
-        System.out.println("Tittle:");
-        String tittle=sc.nextLine();
-        System.out.println("Author:");
-        String author=sc.nextLine();
-        System.out.println("Publisher:");
-        String publisher=sc.nextLine();
-        System.out.println("ISBN:");
-        String isbn=sc.nextLine();
-        int releaseDate=0;
-        int pages=0;
+    public B2b createB2bInvoice() throws InputMismatchException{
+        double invoice;
+        double zusBenefit;
+
         try {
-            System.out.println("Year");
-            releaseDate = sc.nextInt();
-            System.out.println("Pages:");
-            pages = sc.nextInt();
+            System.out.println("Wartosc faktury");
+            invoice=sc.nextDouble();
+            System.out.println("Wartosc swiadczenia ZUS (100%)");
+            zusBenefit=sc.nextDouble();
         }
         catch (InputMismatchException e){
             sc.nextLine();
             throw e;
         }
-        return new Book(tittle, author, releaseDate, pages, publisher, isbn);
+        B2b b2b=new B2b();
+        b2b.invoiceB2b(zusBenefit,invoice);
+        return b2b;
     }
 
-    public Magazine readAndCreateMagazine()throws InputMismatchException{
-        System.out.println("Tittle:");
-        String title=sc.nextLine();
-        System.out.println("Publisher:");
-        String publisher=sc.nextLine();
-        System.out.println("Language:");
-        String language=sc.nextLine();
-        int year=0;
-        int month=0;
-        int day=0;
+    public B2b createB2bProfit() throws InputMismatchException{
+        double profit;
+        double zusBenefit;
+
         try {
-            System.out.println("Year:");
-            year = sc.nextInt();
-            System.out.println("Month:");
-            month = sc.nextInt();
-            System.out.println("Day:");
-            day = sc.nextInt();
-            sc.nextLine();
+            System.out.println("Wartosc wynagrodzenia 'do reki' ");
+            profit=sc.nextDouble();
+            System.out.println("Wartosc swiadczenia ZUS (100%)");
+            zusBenefit=sc.nextDouble();
         }
         catch (InputMismatchException e){
             sc.nextLine();
             throw e;
         }
-        return new Magazine(title, publisher, language, year, month, day);
+        B2b b2b=new B2b();
+        b2b.profitB2b(zusBenefit,profit);
+        return b2b;
     }
+
+    public UoP createUopBrutto() throws InputMismatchException{
+        double salary;
+        Cost cost1;
+        Cost cost2;
+
+
+        try {
+            System.out.println("Wartosc wynagrodzenia brutto ");
+            salary=sc.nextDouble();
+
+        }
+        catch (InputMismatchException e){
+            sc.nextLine();
+            throw e;
+        }
+
+        
+
+        UoP uop=new UoP();
+        uop.UoPBrutto(salary,cost1,cost2);
+        return uop;
+    }
+
 
     public int getInt()throws NumberFormatException{
         int number=0;

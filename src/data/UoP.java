@@ -21,19 +21,17 @@ public class UoP extends AddCost{
      */
 
 
-
-
-
-    public void UoPBrutto (double salary, double cost){
+    public void UoPBrutto (double salary, Cost cost1, Cost cost2){
         private double totalCost;
         private double employeeZus;
         setSalary(salary);
-        setEmployeeCost(cost);
         Zus zus = new Zus();
         zus.zusBase(salary);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         zus.setHealthyBase(salary-employeeZus);
-        totalCost=employeeZus+cost;
+        CostCalculator calcCost=new CostCalculator(cost1,cost2,(salary-employeeZus));
+        setEmployeeCost(calcCost.getTotalCost());
+        totalCost=employeeZus+calcCost.getTotalCost();
         Pit pit = new Pit();
         pit.pitincome(salary,totalCost, zus.getHealthyDeprecation());
         setPitFee(pit.getTax());
@@ -46,17 +44,18 @@ public class UoP extends AddCost{
     }
 
 
-    public void UoPNetto (double profit, double cost, double healthyDeprecation){
+    public void UoPNetto (double profit, Cost cost1, Cost cost2){
         private double totalCost;
         private double employeeZus;
         setProfit(profit);
-        setEmployeeCost(cost);
         setZusBenefit(profit);
         Zus zus = new Zus();
         zus.zusBenefit(profit);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
-        totalCost=employeeZus+cost;
-        setSalary(1.18*(profit+totalCost));
+        CostCalculator calcCost=new CostCalculator(cost1,cost2,(profit*1.18+employeeZus)); //do poprawy
+        setEmployeeCost(calcCost.getTotalCost());
+        totalCost=employeeZus+calcCost.getTotalCost();
+        setSalary(1.18*(profit+totalCost)); //do zweryfikowania
         zus.setHealthyBase(getSalary()-employeeZus);
         Pit pit = new Pit();
         pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
