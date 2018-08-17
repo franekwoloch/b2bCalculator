@@ -22,8 +22,8 @@ public class AppControl {
             library=fileManager.readLibraryFromFile();
             System.out.println("Wczytano dane z biblioteki");
         } catch (ClassNotFoundException|IOException e){
-            library=new Library();
-            System.out.println("Utworzona nowa baze danych biblioteki");
+            calculations=new Calculations();
+            System.out.println("Utworzona nowa baze danych");
         }
     }
 
