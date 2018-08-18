@@ -1,6 +1,9 @@
 package logic;
 
+import data.B2b;
 import data.Calculations;
+import data.UoP;
+import utils.CalculationsUtils;
 import utils.DataReader;
 
 import java.io.IOException;
@@ -15,49 +18,50 @@ public class AppControl {
     //database
     private Calculations calculations;
 
-    public AppControl(){
-        dataReader=new DataReader();
+    public AppControl() {
+        dataReader = new DataReader();
         //fileManager=new FileManager();
-        try {
-            library=fileManager.readLibraryFromFile();
-            System.out.println("Wczytano dane z biblioteki");
-        } catch (ClassNotFoundException|IOException e){
-            calculations=new Calculations();
-            System.out.println("Utworzona nowa baze danych");
-        }
-    }
 
+        /*
+        try {
+            calculations=fileManager.readLibraryFromFile();
+            System.out.println("Wczytano dane z biblioteki");
+        } catch (ClassNotFoundException|IOException e){*/
+        calculations = new Calculations();
+        System.out.println("Utworzona nowa baze danych");
+    }
 
 
     //main loop - choose option and interaction
 
-    public void controlLoop(){
-        Option option=null;
-        while (option!=Option.EXIT){
+    public void controlLoop() {
+        Option option = null;
+        while (option != Option.EXIT) {
             try {
 
                 printOptions();
                 option = Option.createFromInt(dataReader.getInt());
                 switch (option) {
-                    case ADD_BOOK:
-                        addBook();
+                    case B2B:
+                        addB2b();
                         break;
-                    case ADD_MAGAZINE:
-                        addMagazine();
-                    case PRINT_BOOKS:
-                        printBooks();
+                    case UOP:
+                        addUoP();
+                    case UZ:
+                        addUz();
                         break;
-                    case PRINT_MAGAZINES:
-                        printMagazines();
+                    case UOD:
+                        addUoD();
+                        break;
+                    case PRINT:
+                        printCalculations();
                         break;
                     case EXIT:
-                        exit();
+                        break;
                 }
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Wprowadzono niepoprawne dane");
-            }
-            catch (NumberFormatException | NoSuchElementException e){
+            } catch (NumberFormatException | NoSuchElementException e) {
                 System.out.println("Wybrana opcja nie istnieje");
             }
         }
@@ -65,59 +69,109 @@ public class AppControl {
         dataReader.close();
     }
 
-    private void addBook(){
-        Book book=dataReader.readAndCreateBook();
-        library.addBook(book);
+    private void addB2b() {
+
+        int option;
+        System.out.println("1-znam wartosc faktury || 2- wiem ile chce zarobic ");
+        option = dataReader.getInt()
+        switch (option) {
+            case 1:
+                B2b b2b = dataReader.createB2bInvoice();
+                break;
+            case 2:
+                B2b b2b = dataReader.createB2bProfit();
+            default:
+                break;
+        }
+
+            catch(InputMismatchException e){
+            System.out.println("Wprowadzono niepoprawne dane");
+        }
+                    catch(NumberFormatException | NoSuchElementException e){
+            System.out.println("Wybrana opcja nie istnieje");
+        }
+
     }
 
-    private void addMagazine(){
-        Magazine magazine=dataReader.readAndCreateMagazine();
-        library.addMagazine(magazine);
+    private void addUoP() {
+
+        int option;
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        option = dataReader.getInt()
+        switch (option) {
+            case 1:
+                UoP uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
+                break;
+            case 2:
+                UoP uop = dataReader.createUopBrutto();
+            default:
+                break;
+        }
+
+        catch(InputMismatchException e){
+            System.out.println("Wprowadzono niepoprawne dane");
+        }
+        catch(NumberFormatException | NoSuchElementException e){
+            System.out.println("Wybrana opcja nie istnieje");
+        }
+
     }
 
-    private void printBooks(){
-        LibraryUtils.printBooks(library);
-    }
-    private void printMagazines(){LibraryUtils.printMagazines(library);}
 
-    private void printOptions(){
+    private void addUz() {
+    }
+
+    private void addUoD() {
+    }
+
+
+    private void printCalculations() {
+        CalculationsUtils.printCalculations(calculations);
+    }
+
+
+    private void printOptions() {
         System.out.println("Wybierz opcje:");
-        for (Option o:Option.values()){
+        for (Option o : Option.values()) {
             System.out.println(o);
         }
 
     }
+
+    /*
     private void exit (){
         fileManager.writeLibraryToFile(library);
     }
 
+    */
+
     private enum Option {
-        EXIT(0,"Wyjscie z programu"),
-        ADD_BOOK(1,"Dodanie nowej ksiazki"),
-        ADD_MAGAZINE(2, "Dodanie nowego czasopisma"),
-        PRINT_BOOKS(3, "Wyswietlenie wszystkich ksiazek"),
-        PRINT_MAGAZINES(4,"Wyswietlenie wszystkich czasopism");
+        EXIT(0, "Wyjscie z programu"),
+        B2B(1, "Umowa b2b"),
+        UOP(2, "Umowa o prace"),
+        UZ(3, "Umowa zlecenie"),
+        UOD(4, "Umowa o dzielo"),
+        PRINT(5, "Pokaz zapisane kalkulacje");
 
         private int value;
         private String description;
 
 
-        Option(int value, String description){
-            this.value=value;
-            this.description=description;
+        Option(int value, String description) {
+            this.value = value;
+            this.description = description;
         }
 
         @Override
         public String toString() {
-            return value+" - "+description;
+            return value + " - " + description;
         }
 
-        public static Option createFromInt (int option) throws NoSuchElementException{
-            Option result=null;
+        public static Option createFromInt(int option) throws NoSuchElementException {
+            Option result = null;
             try {
-                result= Option.values()[option];
-            }
-            catch (ArrayIndexOutOfBoundsException e){
+                result = Option.values()[option];
+            } catch (ArrayIndexOutOfBoundsException e) {
                 throw new NoSuchElementException("Brak elementu o podanym ID ");
             }
             return result;

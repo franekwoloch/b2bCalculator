@@ -6,6 +6,7 @@ import data.UoP;
 
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class DataReader {
@@ -58,8 +59,23 @@ public class DataReader {
 
     public UoP createUopBrutto() throws InputMismatchException{
         double salary;
-        Cost cost1;
-        Cost cost2;
+        Cost cost1=null;
+        Cost cost2=null;
+
+        while (cost1==null || cost2=null){
+            try {
+
+                printCosts();
+                cost1= Cost.createFromInt(getInt());
+                cost2= Cost.createFromInt(getInt());
+
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Wprowadzono niepoprawne dane");
+            }
+            catch (NumberFormatException | NoSuchElementException e){
+                System.out.println("Wybrana opcja nie istnieje");
+            }
 
 
         try {
@@ -71,7 +87,6 @@ public class DataReader {
             sc.nextLine();
             throw e;
         }
-
 
 
         UoP uop=new UoP();
@@ -92,5 +107,16 @@ public class DataReader {
             sc.nextLine();
         }
         return number;
+    }
+
+    private void printCosts(){
+        System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+        System.out.println("Z uwagi na miejsce zamieszkania: 1 lub 2");
+        System.out.println("Autorsskie koszty uzyskania przuchodu (UoP): 4 lub 5");
+        System.out.println("Autorsskie koszty uzyskania przuchodu (UoD): 3 lub 4");
+        for (Cost o:Cost.values()){
+            System.out.println(o);
+        }
+
     }
 }
