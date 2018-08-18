@@ -72,7 +72,7 @@ public class DataReader {
             throw e;
         }
 
-        
+
 
         UoP uop=new UoP();
         uop.UoPBrutto(salary,cost1,cost2);
