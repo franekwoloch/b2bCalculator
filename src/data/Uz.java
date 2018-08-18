@@ -19,8 +19,8 @@ public class Uz extends AddCost {
 
 
     public void UzSalary (double salary, double cost){
-        private double totalCost;
-        private double employeeZus;
+        double totalCost;
+        double employeeZus;
         setSalary(salary);
         setEmployeeCost(cost);
         Zus zus = new Zus();
@@ -40,9 +40,9 @@ public class Uz extends AddCost {
     }
 
 
-    public UoP UoPNetto (double profit, double cost, double healthyDeprecation){
-        private double totalCost;
-        private double employeeZus;
+    public void UoPNetto (double profit, double cost, double healthyDeprecation){
+        double totalCost;
+        double employeeZus;
         setProfit(profit);
         setEmployeeCost(cost);
         Zus zus = new Zus();

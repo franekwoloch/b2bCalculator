@@ -14,36 +14,37 @@ public class CostCalculator {
     setPitBase(pitBase);
     }
 
-    public double calculateCost(){
-        private double factor1=0;
-        private double factor2=0;
+    public double calculateCost() {
+        double factor1 = 0;
+        double factor2 = 0;
 
-        if getCost1()==Cost.LOCAL{
-            factor1=111.25;
+        if (getCost1() == Cost.LOCAL) {
+            factor1 = 111.25;
         }
 
-        if getCost2()==Cost.ARRIVAL{
-            factor1=139.06;
+        if (getCost2() == Cost.ARRIVAL) {
+            factor1 = 139.06;
         }
 
-        if getCost2()==Cost.AUTHOR{
-            factor2=0.5*getPitBase()
+        if (getCost2() == Cost.AUTHOR) {
+            factor2 = 0.5 * getPitBase();
         }
 
-        if getCost2()==Cost.NORMAL{
-            factor2=0.2*getPitBase()
+        if (getCost2() == Cost.NORMAL) {
+            factor2 = 0.2 * getPitBase();
         }
 
-        if getCost1()==Cost.NO{
-            factor1=0;
+        if (getCost1() == Cost.NO) {
+            factor1 = 0;
         }
 
-        if getCost2()==Cost.NO{
-            factor2=0;
+        if (getCost2() == Cost.NO) {
+            factor2 = 0;
         }
 
 
         setTotalCost(factor1+factor2);
+        return getTotalCost();
     }
 
     //GETTERS&SETTERS

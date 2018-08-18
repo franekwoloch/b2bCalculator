@@ -36,7 +36,7 @@ public class B2b extends Job {
 
 
     public void profitB2b(double zusBenefit, double profit) {
-        private double invoice;
+        double invoice;
         setZusBenefit(zusBenefit);
         setProfit(profit);
         Zus zus = new Zus();

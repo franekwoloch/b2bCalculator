@@ -11,8 +11,8 @@ public class Pit {
 
     //METHODS
     public void pitincome (double income, double cost, double healthyDeprecation ){
-        private double tax;
-        private double profit;
+        double tax;
+        double profit;
         setIncome(income);
         setCost(cost);
         tax=0.18*(income-cost)-healthyDeprecation;
@@ -23,8 +23,8 @@ public class Pit {
     }
 
     public void pitprofit(double profit, double cost, double healthyDeprecation){
-        private double tax;
-        private double income;
+        double tax;
+        double income;
         setProfit(profit);
         setCost(cost);
         income=(profit+1.18*cost-healthyDeprecation)/0.82;

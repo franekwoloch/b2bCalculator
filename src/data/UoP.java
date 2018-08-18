@@ -22,8 +22,8 @@ public class UoP extends AddCost{
 
 
     public void UoPBrutto (double salary, Cost cost1, Cost cost2){
-        private double totalCost;
-        private double employeeZus;
+        double totalCost;
+        double employeeZus;
         setSalary(salary);
         Zus zus = new Zus();
         zus.zusBase(salary);
@@ -45,8 +45,8 @@ public class UoP extends AddCost{
 
 
     public void UoPNetto (double profit, Cost cost1, Cost cost2){
-        private double totalCost;
-        private double employeeZus;
+        double totalCost;
+        double employeeZus;
         setProfit(profit);
         setZusBenefit(profit);
         Zus zus = new Zus();

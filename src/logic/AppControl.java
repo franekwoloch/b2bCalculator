@@ -73,17 +73,18 @@ public class AppControl {
 
         int option;
         System.out.println("1-znam wartosc faktury || 2- wiem ile chce zarobic ");
-        option = dataReader.getInt()
+        option = dataReader.getInt();
+        B2b b2b=new B2b();
         switch (option) {
             case 1:
-                B2b b2b = dataReader.createB2bInvoice();
+                b2b = dataReader.createB2bInvoice();
                 break;
             case 2:
-                B2b b2b = dataReader.createB2bProfit();
+                b2b = dataReader.createB2bProfit();
             default:
                 break;
         }
-
+/*
             catch(InputMismatchException e){
             System.out.println("Wprowadzono niepoprawne dane");
         }
@@ -91,30 +92,33 @@ public class AppControl {
             System.out.println("Wybrana opcja nie istnieje");
         }
 
+        */
+
     }
 
     private void addUoP() {
 
         int option;
+        UoP uop=new UoP();
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
-        option = dataReader.getInt()
+        option = dataReader.getInt();
         switch (option) {
             case 1:
-                UoP uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
+                uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
                 break;
             case 2:
-                UoP uop = dataReader.createUopBrutto();
+                uop = dataReader.createUopBrutto();
             default:
                 break;
         }
-
+/*
         catch(InputMismatchException e){
             System.out.println("Wprowadzono niepoprawne dane");
         }
         catch(NumberFormatException | NoSuchElementException e){
             System.out.println("Wybrana opcja nie istnieje");
         }
-
+*/
     }
 
 

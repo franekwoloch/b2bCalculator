@@ -57,40 +57,40 @@ public class DataReader {
         return b2b;
     }
 
-    public UoP createUopBrutto() throws InputMismatchException{
+    public UoP createUopBrutto() throws InputMismatchException {
         double salary;
-        Cost cost1=null;
-        Cost cost2=null;
-
-        while (cost1==null || cost2=null){
+        Cost cost1 = null;
+        Cost cost2 = null;
+        UoP uop = new UoP();
+        while ((cost1 == null) ||( cost2 == null)) {
             try {
 
                 printCosts();
-                cost1= Cost.createFromInt(getInt());
-                cost2= Cost.createFromInt(getInt());
+                cost1 = Cost.createFromInt(getInt());
+                cost2 = Cost.createFromInt(getInt());
 
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Wprowadzono niepoprawne dane");
-            }
-            catch (NumberFormatException | NoSuchElementException e){
+            } catch (NumberFormatException | NoSuchElementException e) {
                 System.out.println("Wybrana opcja nie istnieje");
             }
 
 
-        try {
-            System.out.println("Wartosc wynagrodzenia brutto ");
-            salary=sc.nextDouble();
+            try {
+                System.out.println("Wartosc wynagrodzenia brutto ");
+                salary = sc.nextDouble();
+
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                throw e;
+            }
+
+
+
+            uop.UoPBrutto(salary, cost1, cost2);
 
         }
-        catch (InputMismatchException e){
-            sc.nextLine();
-            throw e;
-        }
 
-
-        UoP uop=new UoP();
-        uop.UoPBrutto(salary,cost1,cost2);
         return uop;
     }
 
