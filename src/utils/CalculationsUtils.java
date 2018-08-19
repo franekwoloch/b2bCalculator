@@ -1,6 +1,7 @@
 package utils;
 
 import data.Calculations;
+import data.Job;
 import data.Record;
 
 public class CalculationsUtils {
@@ -18,7 +19,7 @@ public class CalculationsUtils {
         }
 
         if (countCalcs == 0) {
-            System.out.println("Brak ksiazek w bibliotece");
+            System.out.println("Brak zapisanych obliczen");
         }
     }
 

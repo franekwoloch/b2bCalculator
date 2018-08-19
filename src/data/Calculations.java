@@ -13,7 +13,7 @@ public class Calculations implements Serializable {
         private int calculationNumber;
 
 
-        public Calculations(){
+    public Calculations(){
 
             calculations=new Record[INITIAL_CAPACITY];
         }
@@ -29,7 +29,7 @@ public class Calculations implements Serializable {
 
 
 
-        private void removeCalculation(Record record){
+        public void removeCalculation(Record record){
             if (record==null)
                 return;
             final int NOT_FOUND=-1;
@@ -50,7 +50,7 @@ public class Calculations implements Serializable {
 
 
 
-    private void addRecord(Record record)throws ArrayIndexOutOfBoundsException{
+    public void addRecord(Record record)throws ArrayIndexOutOfBoundsException{
         if (calculationNumber==calculations.length) {
             calculations= Arrays.copyOf(calculations, calculations.length*2);
         }

@@ -1,13 +1,16 @@
 package utils;
+import java.util.Scanner;
+
 
 import data.B2b;
 import data.Cost;
 import data.UoP;
 
 
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
+
 
 public class DataReader {
     private Scanner sc;
@@ -16,7 +19,7 @@ public class DataReader {
     }
 
     public void close(){
-        sc.close();
+
     }
 
     public B2b createB2bInvoice() throws InputMismatchException{
@@ -30,7 +33,7 @@ public class DataReader {
             zusBenefit=sc.nextDouble();
         }
         catch (InputMismatchException e){
-            sc.nextLine();
+
             throw e;
         }
         B2b b2b=new B2b();

@@ -5,14 +5,16 @@ import java.util.Arrays;
 
 public class Record {
 
-
+public static int recordID=0;
     private int id;
     private Instant time;
     private String description;
     private Job job;
 
-    public Record(){
+    public Record(String desc,Job job){
         setTime(Instant.now());
+        setDescription(desc);
+        setJob(job);
     }
 
     public int getId() {

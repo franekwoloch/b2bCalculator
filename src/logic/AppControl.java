@@ -2,9 +2,11 @@ package logic;
 
 import data.B2b;
 import data.Calculations;
+import data.Record;
 import data.UoP;
 import utils.CalculationsUtils;
 import utils.DataReader;
+import utils.JobUtils;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -25,7 +27,7 @@ public class AppControl {
         /*
         try {
             calculations=fileManager.readLibraryFromFile();
-            System.out.println("Wczytano dane z biblioteki");
+            System.out.println("Wczytano dane z bazy danych");
         } catch (ClassNotFoundException|IOException e){*/
         calculations = new Calculations();
         System.out.println("Utworzona nowa baze danych");
@@ -71,30 +73,46 @@ public class AppControl {
 
     private void addB2b() {
 
-        int option;
+        int option=0;
         System.out.println("1-znam wartosc faktury || 2- wiem ile chce zarobic ");
-        option = dataReader.getInt();
-        B2b b2b=new B2b();
-        switch (option) {
-            case 1:
-                b2b = dataReader.createB2bInvoice();
-                break;
-            case 2:
-                b2b = dataReader.createB2bProfit();
-            default:
-                break;
-        }
-/*
-            catch(InputMismatchException e){
-            System.out.println("Wprowadzono niepoprawne dane");
-        }
-                    catch(NumberFormatException | NoSuchElementException e){
-            System.out.println("Wybrana opcja nie istnieje");
-        }
+        B2b b2b = new B2b();
+        while (option != 1 & option != 2){
 
-        */
+                option = dataReader.getInt();
+                switch (option) {
+                    case 1:
+                        b2b = dataReader.createB2bInvoice();
+                        break;
+                    case 2:
+                        b2b = dataReader.createB2bProfit();
+                        break;
+                    default:
+                        System.out.println("Podano niepoprawna wartosc");
+                    }
+            }
+        JobUtils.showResult(b2b);
+        int choice = 3;
+        System.out.println("Czy chcesz zapisac obliczenia? [0-yes/1-no]");
+
+
+        while (choice !=0 & choice != 1) {
+
+            choice = dataReader.getInt();
+            switch (choice) {
+                case 0:
+                    Record record=JobUtils.saveRecord(b2b);
+                    calculations.addRecord(record);
+                    System.out.println("Zapisano obliczenia");
+                    break;
+                case 1:
+                    break;
+                default:
+                    System.out.println("Podano niepoprawna wartosc");
+            }
+        }
 
     }
+
 
     private void addUoP() {
 
@@ -102,23 +120,26 @@ public class AppControl {
         UoP uop=new UoP();
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
         option = dataReader.getInt();
-        switch (option) {
-            case 1:
-                uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
-                break;
-            case 2:
-                uop = dataReader.createUopBrutto();
-            default:
-                break;
+        try {
+            switch (option) {
+                case 1:
+                    uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
+                    break;
+                case 2:
+                    uop = dataReader.createUopBrutto();
+                default:
+                    break;
+            }
+
         }
-/*
+
         catch(InputMismatchException e){
             System.out.println("Wprowadzono niepoprawne dane");
         }
         catch(NumberFormatException | NoSuchElementException e){
             System.out.println("Wybrana opcja nie istnieje");
         }
-*/
+
     }
 
 
