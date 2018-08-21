@@ -98,6 +98,43 @@ public class DataReader {
     }
 
 
+    public UoP createUopNetto() throws InputMismatchException {
+        double profit;
+        Cost cost1 = null;
+        Cost cost2 = null;
+        UoP uop = new UoP();
+        while ((cost1 == null) ||( cost2 == null)) {
+            try {
+
+                printCosts();
+                cost1 = Cost.createFromInt(getInt());
+                cost2 = Cost.createFromInt(getInt());
+
+            } catch (InputMismatchException e) {
+                System.out.println("Wprowadzono niepoprawne dane");
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.out.println("Wybrana opcja nie istnieje");
+            }
+
+            try {
+                System.out.println("Wartosc wynagrodzenia netto ");
+                profit = sc.nextDouble();
+
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                throw e;
+            }
+
+
+
+            uop.UoPNetto(profit, cost1, cost2);
+
+        }
+
+        return uop;
+    }
+
+
     public int getInt()throws NumberFormatException{
         int number=0;
         try {

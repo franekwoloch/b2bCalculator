@@ -107,13 +107,16 @@ public class AppControl {
         try {
             switch (option) {
                 case 1:
-                    uop = dataReader.createUopBrutto(); //brak implementacji metody createUoPNetto
+                    uop = dataReader.createUopNetto();
                     break;
                 case 2:
                     uop = dataReader.createUopBrutto();
                 default:
                     break;
             }
+
+            JobUtils.showResult(uop);
+            CalculationsUtils.saveCalculations(uop,calculations);
 
         }
 
