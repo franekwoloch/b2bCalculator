@@ -6,7 +6,7 @@ import java.io.*;
 
 public class FileManager {
     public static final String FILE_NAME="Calculations.o";
-    public void writeLibraryToFile(Calculations calc){
+    public void writeCalculationsToFile(Calculations calc){
         try(
                 FileOutputStream fos=new FileOutputStream(FILE_NAME);
                 ObjectOutputStream oos=new ObjectOutputStream(fos);

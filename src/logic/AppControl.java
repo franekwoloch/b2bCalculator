@@ -1,8 +1,6 @@
 package logic;
 
-import data.B2b;
-import data.Calculations;
-import data.UoP;
+import data.*;
 import utils.CalculationsUtils;
 import utils.DataReader;
 import utils.FileManager;
@@ -61,6 +59,7 @@ public class AppControl {
                         printCalculations();
                         break;
                     case EXIT:
+                        exit();
                         break;
                 }
             } catch (InputMismatchException e) {
@@ -101,10 +100,12 @@ public class AppControl {
     private void addUoP() {
 
         int option;
-        UoP uop=new UoP();
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
-        option = dataReader.getInt();
-        try {
+        UoP uop=new UoP();
+        while (option != 1 & option != 2) {
+
+            option = dataReader.getInt();
+
             switch (option) {
                 case 1:
                     uop = dataReader.createUopNetto();
@@ -112,28 +113,63 @@ public class AppControl {
                 case 2:
                     uop = dataReader.createUopBrutto();
                 default:
-                    break;
+                    System.out.println("Podano niepoprawna wartosc");
             }
+
+        }
 
             JobUtils.showResult(uop);
             CalculationsUtils.saveCalculations(uop,calculations);
-
-        }
-
-        catch(InputMismatchException e){
-            System.out.println("Wprowadzono niepoprawne dane");
-        }
-        catch(NumberFormatException | NoSuchElementException e){
-            System.out.println("Wybrana opcja nie istnieje");
-        }
-
     }
 
 
     private void addUz() {
+        int option;
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        Uz uz=new Uz();
+        while (option != 1 & option != 2) {
+
+            option = dataReader.getInt();
+
+            switch (option) {
+                case 1:
+                    //uz = dataReader.createUzNetto();
+                    break;
+                case 2:
+                    //uz = dataReader.createUzBrutto();
+                default:
+                    System.out.println("Podano niepoprawna wartosc");
+            }
+
+        }
+
+        JobUtils.showResult(uz);
+        CalculationsUtils.saveCalculations(uz,calculations);
     }
 
+
     private void addUoD() {
+        int option;
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        UoD uod=new UoD();
+        while (option != 1 & option != 2) {
+
+            option = dataReader.getInt();
+
+            switch (option) {
+                case 1:
+                    //uz = dataReader.createUoDNetto();
+                    break;
+                case 2:
+                    //uz = dataReader.createUoDBrutto();
+                default:
+                    System.out.println("Podano niepoprawna wartosc");
+            }
+
+        }
+
+        JobUtils.showResult(uod);
+        CalculationsUtils.saveCalculations(uod,calculations);
     }
 
 
@@ -150,12 +186,12 @@ public class AppControl {
 
     }
 
-    /*
+
     private void exit (){
-        fileManager.writeLibraryToFile(library);
+        fileManager.writeCalculationsToFile(calculations);
     }
 
-    */
+
 
     private enum Option {
         EXIT(0, "Wyjscie z programu"),
