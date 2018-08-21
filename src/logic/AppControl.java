@@ -6,6 +6,7 @@ import data.Record;
 import data.UoP;
 import utils.CalculationsUtils;
 import utils.DataReader;
+import utils.FileManager;
 import utils.JobUtils;
 
 import java.io.IOException;
@@ -15,18 +16,18 @@ import java.util.NoSuchElementException;
 public class AppControl {
     //variables to interaction with user
     private DataReader dataReader;
-    //private FileManager fileManager;
+    private FileManager fileManager;
 
     //database
     private Calculations calculations;
 
     public AppControl() {
         dataReader = new DataReader();
-        //fileManager=new FileManager();
+        fileManager=new FileManager();
 
-        /*
+
         try {
-            calculations=fileManager.readLibraryFromFile();
+            calculations=fileManager.readCalculationsFromFile();
             System.out.println("Wczytano dane z bazy danych");
         } catch (ClassNotFoundException|IOException e){*/
         calculations = new Calculations();
