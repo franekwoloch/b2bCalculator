@@ -5,7 +5,7 @@ import java.util.Scanner;
 import data.B2b;
 import data.Cost;
 import data.UoP;
-
+import data.Uz;
 
 
 import java.util.InputMismatchException;
@@ -132,6 +132,41 @@ public class DataReader {
         }
 
         return uop;
+    }
+
+    public Uz createUzNetto() throws InputMismatchException {
+        double profit;
+
+        Uz uz = new Uz();
+
+            try {
+                System.out.println("Wartosc wynagrodzenia 'do reki ");
+                profit = sc.nextDouble();
+
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                throw e;
+            }
+
+        uz.UzNetto(profit);
+        return uz;
+    }
+
+    public Uz createUzBrutto() throws InputMismatchException {
+        double salary;
+        double cost=0;
+        Uz uz = new Uz();
+
+            try {
+                System.out.println("Wartosc wynagrodzenia brutto: ");
+                salary = sc.nextDouble();
+
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                throw e;
+            }
+        uz.UzBrutto(salary, cost);
+        return uz;
     }
 
 

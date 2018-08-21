@@ -133,10 +133,10 @@ public class AppControl {
 
             switch (option) {
                 case 1:
-                    //uz = dataReader.createUzNetto();
+                    uz = dataReader.createUzNetto();
                     break;
                 case 2:
-                    //uz = dataReader.createUzBrutto();
+                    uz = dataReader.createUzBrutto();
                 default:
                     System.out.println("Podano niepoprawna wartosc");
             }
