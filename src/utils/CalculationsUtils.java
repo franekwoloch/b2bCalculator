@@ -23,4 +23,27 @@ public class CalculationsUtils {
         }
     }
 
+
+    public static void saveCalculations(Job b2b, Calculations calc){
+        System.out.println("Czy chcesz zapisac obliczenia? [0-yes/1-no]");
+        int choice=-1;
+        DataReader dataReader;
+        dataReader = new DataReader();
+        while (choice !=0 & choice != 1) {
+
+            choice = dataReader.getInt();
+            switch (choice) {
+                case 0:
+                    Record record=JobUtils.saveRecord(b2b);
+                    calc.addRecord(record);
+                    System.out.println("Zapisano obliczenia");
+                    break;
+                case 1:
+                    break;
+                default:
+                    System.out.println("Podano niepoprawna wartosc");
+            }
+        }
+    }
+
 }

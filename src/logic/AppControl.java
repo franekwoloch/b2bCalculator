@@ -2,7 +2,6 @@ package logic;
 
 import data.B2b;
 import data.Calculations;
-import data.Record;
 import data.UoP;
 import utils.CalculationsUtils;
 import utils.DataReader;
@@ -23,15 +22,17 @@ public class AppControl {
 
     public AppControl() {
         dataReader = new DataReader();
-        fileManager=new FileManager();
+        fileManager = new FileManager();
 
 
         try {
-            calculations=fileManager.readCalculationsFromFile();
+            calculations = fileManager.readCalculationsFromFile();
             System.out.println("Wczytano dane z bazy danych");
-        } catch (ClassNotFoundException|IOException e){*/
-        calculations = new Calculations();
-        System.out.println("Utworzona nowa baze danych");
+        } catch (ClassNotFoundException | IOException e) {
+            calculations = new Calculations();
+            System.out.println("Utworzona nowa baze danych");
+        }
+
     }
 
 
@@ -92,25 +93,7 @@ public class AppControl {
                     }
             }
         JobUtils.showResult(b2b);
-        int choice = 3;
-        System.out.println("Czy chcesz zapisac obliczenia? [0-yes/1-no]");
-
-
-        while (choice !=0 & choice != 1) {
-
-            choice = dataReader.getInt();
-            switch (choice) {
-                case 0:
-                    Record record=JobUtils.saveRecord(b2b);
-                    calculations.addRecord(record);
-                    System.out.println("Zapisano obliczenia");
-                    break;
-                case 1:
-                    break;
-                default:
-                    System.out.println("Podano niepoprawna wartosc");
-            }
-        }
+        CalculationsUtils.saveCalculations(b2b,calculations);
 
     }
 
