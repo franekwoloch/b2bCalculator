@@ -99,7 +99,7 @@ public class AppControl {
 
     private void addUoP() {
 
-        int option;
+        int option=-1;
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
         UoP uop=new UoP();
         while (option != 1 & option != 2) {
@@ -124,7 +124,7 @@ public class AppControl {
 
 
     private void addUz() {
-        int option;
+        int option=-1;
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
         Uz uz=new Uz();
         while (option != 1 & option != 2) {
@@ -149,7 +149,7 @@ public class AppControl {
 
 
     private void addUoD() {
-        int option;
+        int option=-1;
         System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
         UoD uod=new UoD();
         while (option != 1 & option != 2) {
@@ -158,10 +158,10 @@ public class AppControl {
 
             switch (option) {
                 case 1:
-                    //uz = dataReader.createUoDNetto();
+                    uod = dataReader.createUoDNetto();
                     break;
                 case 2:
-                    //uz = dataReader.createUoDBrutto();
+                    uod = dataReader.createUoDBrutto();
                 default:
                     System.out.println("Podano niepoprawna wartosc");
             }

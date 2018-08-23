@@ -2,10 +2,7 @@ package utils;
 import java.util.Scanner;
 
 
-import data.B2b;
-import data.Cost;
-import data.UoP;
-import data.Uz;
+import data.*;
 
 
 import java.util.InputMismatchException;
@@ -66,16 +63,15 @@ public class DataReader {
         Cost cost2 = null;
         UoP uop = new UoP();
         while ((cost1 == null) ||( cost2 == null)) {
-            try {
 
-                printCosts();
+                System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+                System.out.println("Z uwagi na miejsce zamieszkania:");
+                System.out.println(Cost.LOCAL.toString() +" lub "+Cost.ARRIVAL.toString());
                 cost1 = Cost.createFromInt(getInt());
+                System.out.println("Autorskie koszty uzyskania przuchodu:");
+                System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NO.toString());
                 cost2 = Cost.createFromInt(getInt());
 
-            } catch (InputMismatchException e) {
-                System.out.println("Wprowadzono niepoprawne dane");
-            } catch (NumberFormatException | NoSuchElementException e) {
-                System.out.println("Wybrana opcja nie istnieje");
             }
 
 
@@ -91,29 +87,31 @@ public class DataReader {
 
 
             uop.UoPBrutto(salary, cost1, cost2);
+        return uop;
 
         }
-
-        return uop;
-    }
 
 
     public UoP createUopNetto() throws InputMismatchException {
         double profit;
         Cost cost1 = null;
         Cost cost2 = null;
+        int localOption;
         UoP uop = new UoP();
         while ((cost1 == null) ||( cost2 == null)) {
-            try {
 
-                printCosts();
-                cost1 = Cost.createFromInt(getInt());
-                cost2 = Cost.createFromInt(getInt());
+                System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+                System.out.println("Z uwagi na miejsce zamieszkania:");
+                System.out.println(Cost.LOCAL.toString() +" lub "+Cost.ARRIVAL.toString());
+                localOption=getInt();
+                System.out.println(localOption);
+                cost1 = Cost.createFromInt(localOption);
+                System.out.println("Autorskie koszty uzyskania przuchodu:");
+                System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NO.toString());
+                localOption=getInt();
+                cost2 = Cost.createFromInt(localOption);
 
-            } catch (InputMismatchException e) {
-                System.out.println("Wprowadzono niepoprawne dane");
-            } catch (NumberFormatException | NoSuchElementException e) {
-                System.out.println("Wybrana opcja nie istnieje");
+
             }
 
             try {
@@ -128,14 +126,16 @@ public class DataReader {
 
 
             uop.UoPNetto(profit, cost1, cost2);
-
+        return uop;
         }
 
-        return uop;
-    }
+
+
 
     public Uz createUzNetto() throws InputMismatchException {
         double profit;
+        double cost1=0;
+        double cost2=0;
 
         Uz uz = new Uz();
 
@@ -148,7 +148,7 @@ public class DataReader {
                 throw e;
             }
 
-        uz.UzNetto(profit);
+        uz.UzNetto(profit,cost1,cost2);
         return uz;
     }
 
@@ -169,9 +169,45 @@ public class DataReader {
         return uz;
     }
 
+    public UoD createUoDNetto() throws InputMismatchException {
+        double profit;
+        double cost=0;
+
+        UoD uod = new UoD();
+
+        try {
+            System.out.println("Wartosc wynagrodzenia 'do reki ");
+            profit = sc.nextDouble();
+
+        } catch (InputMismatchException e) {
+            sc.nextLine();
+            throw e;
+        }
+
+        uod.UoDProfit(profit, cost);
+        return uod;
+    }
+
+    public UoD createUoDBrutto() throws InputMismatchException {
+        double salary;
+        double cost=0;
+        UoD uod = new UoD();
+
+        try {
+            System.out.println("Wartosc wynagrodzenia brutto: ");
+            salary = sc.nextDouble();
+
+        } catch (InputMismatchException e) {
+            sc.nextLine();
+            throw e;
+        }
+        uod.UoDSalary(salary, cost);
+        return uod;
+    }
+
 
     public int getInt()throws NumberFormatException{
-        int number=0;
+        int number;
         try {
             number = sc.nextInt();
         }
@@ -184,14 +220,14 @@ public class DataReader {
         return number;
     }
 
-    private void printCosts(){
-        System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
-        System.out.println("Z uwagi na miejsce zamieszkania: 1 lub 2");
-        System.out.println("Autorsskie koszty uzyskania przuchodu (UoP): 4 lub 5");
-        System.out.println("Autorsskie koszty uzyskania przuchodu (UoD): 3 lub 4");
-        for (Cost o:Cost.values()){
-            System.out.println(o);
-        }
 
+    private void printCostsUCC(){
+        System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+        System.out.println("Autorskie koszty uzyskania przuchodu:");
+        System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NORMAL.toString());
     }
+
+
+
 }
+

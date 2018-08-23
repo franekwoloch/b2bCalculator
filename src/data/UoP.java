@@ -30,6 +30,7 @@ public class UoP extends AddCost{
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         zus.setHealthyBase(salary-employeeZus);
         CostCalculator calcCost=new CostCalculator(cost1,cost2,(salary-employeeZus));
+        calcCost.calculateCost();
         setEmployeeCost(calcCost.getTotalCost());
         totalCost=employeeZus+calcCost.getTotalCost();
         Pit pit = new Pit();
