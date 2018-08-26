@@ -23,16 +23,11 @@ public class DataReader {
         double invoice;
         double zusBenefit;
 
-        try {
             System.out.println("Wartosc faktury");
-            invoice=sc.nextDouble();
+            invoice=getDouble();
             System.out.println("Wartosc swiadczenia ZUS (100%)");
-            zusBenefit=sc.nextDouble();
-        }
-        catch (InputMismatchException e){
+            zusBenefit=getDouble();
 
-            throw e;
-        }
         B2b b2b=new B2b();
         b2b.invoiceB2b(zusBenefit,invoice);
         return b2b;
@@ -42,16 +37,11 @@ public class DataReader {
         double profit;
         double zusBenefit;
 
-        try {
             System.out.println("Wartosc wynagrodzenia 'do reki' ");
-            profit=sc.nextDouble();
+            profit=getDouble();
             System.out.println("Wartosc swiadczenia ZUS (100%)");
-            zusBenefit=sc.nextDouble();
-        }
-        catch (InputMismatchException e){
-            sc.nextLine();
-            throw e;
-        }
+            zusBenefit=getDouble();
+
         B2b b2b=new B2b();
         b2b.profitB2b(zusBenefit,profit);
         return b2b;
@@ -74,17 +64,8 @@ public class DataReader {
 
             }
 
-
-            try {
                 System.out.println("Wartosc wynagrodzenia brutto ");
-                salary = sc.nextDouble();
-
-            } catch (InputMismatchException e) {
-                sc.nextLine();
-                throw e;
-            }
-
-
+                salary = getDouble();
 
             uop.UoPBrutto(salary, cost1, cost2);
         return uop;
@@ -110,22 +91,11 @@ public class DataReader {
                 System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NO.toString());
                 localOption=getInt();
                 cost2 = Cost.createFromInt(localOption);
-
-
             }
 
-            try {
                 System.out.println("Wartosc wynagrodzenia netto ");
-                profit = sc.nextDouble();
-
-            } catch (InputMismatchException e) {
-                sc.nextLine();
-                throw e;
-            }
-
-
-
-            uop.UoPNetto(profit, cost1, cost2);
+                profit = getDouble();
+                uop.UoPNetto(profit, cost1, cost2);
         return uop;
         }
 
@@ -139,14 +109,8 @@ public class DataReader {
 
         Uz uz = new Uz();
 
-            try {
                 System.out.println("Wartosc wynagrodzenia 'do reki ");
-                profit = sc.nextDouble();
-
-            } catch (InputMismatchException e) {
-                sc.nextLine();
-                throw e;
-            }
+                profit = getDouble();
 
         uz.UzNetto(profit,cost1,cost2);
         return uz;
@@ -156,15 +120,7 @@ public class DataReader {
         double salary;
         double cost=0;
         Uz uz = new Uz();
-
-            try {
-                System.out.println("Wartosc wynagrodzenia brutto: ");
-                salary = sc.nextDouble();
-
-            } catch (InputMismatchException e) {
-                sc.nextLine();
-                throw e;
-            }
+                salary = getDouble();
         uz.UzBrutto(salary, cost);
         return uz;
     }
@@ -174,15 +130,7 @@ public class DataReader {
         double cost=0;
 
         UoD uod = new UoD();
-
-        try {
-            System.out.println("Wartosc wynagrodzenia 'do reki ");
-            profit = sc.nextDouble();
-
-        } catch (InputMismatchException e) {
-            sc.nextLine();
-            throw e;
-        }
+        profit = getDouble();
 
         uod.UoDProfit(profit, cost);
         return uod;
@@ -193,14 +141,9 @@ public class DataReader {
         double cost=0;
         UoD uod = new UoD();
 
-        try {
-            System.out.println("Wartosc wynagrodzenia brutto: ");
-            salary = sc.nextDouble();
+        System.out.println("Wartosc wynagrodzenia brutto: ");
+        salary = getDouble();
 
-        } catch (InputMismatchException e) {
-            sc.nextLine();
-            throw e;
-        }
         uod.UoDSalary(salary, cost);
         return uod;
     }
@@ -222,9 +165,25 @@ public class DataReader {
             return number;
     }
 
+    public double getDouble(){
+        double number=0;
+        boolean error=true;
+        while (error) {
+            try {
+                number = sc.nextDouble();
+                error = false;
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.err.println("Podaj liczbe!");
+            } finally {
+                sc.nextLine();
+            }
+        }
+        return number;
+    }
+
 
     private void printCostsUCC(){
-        System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+        System.out.println("Wybierz skladowe kosztow uzyskania przychodu:");
         System.out.println("Autorskie koszty uzyskania przuchodu:");
         System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NORMAL.toString());
     }
