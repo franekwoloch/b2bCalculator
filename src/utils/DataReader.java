@@ -52,18 +52,22 @@ public class DataReader {
         Cost cost1 = null;
         Cost cost2 = null;
         UoP uop = new UoP();
+        System.out.println("Wybierz skladowe kosztow uzyskania przychodu:");
         while ((cost1 == null) ||( cost2 == null)) {
 
-                System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
-                System.out.println("Z uwagi na miejsce zamieszkania:");
-                System.out.println(Cost.LOCAL.toString() +" lub "+Cost.ARRIVAL.toString());
+            try {
+2                System.out.println("Z uwagi na miejsce zamieszkania:");
+                System.out.println(Cost.LOCAL.toString() + " lub " + Cost.ARRIVAL.toString());
                 cost1 = Cost.createFromInt(getInt());
                 System.out.println("Autorskie koszty uzyskania przuchodu:");
-                System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NO.toString());
+                System.out.println(Cost.AUTHOR.toString() + " lub " + Cost.NO.toString());
                 cost2 = Cost.createFromInt(getInt());
-
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("Wybierz poprawne koszta ;)");
             }
 
+        }
                 System.out.println("Wartosc wynagrodzenia brutto ");
                 salary = getDouble();
 
@@ -77,20 +81,20 @@ public class DataReader {
         double profit;
         Cost cost1 = null;
         Cost cost2 = null;
-        int localOption;
         UoP uop = new UoP();
         while ((cost1 == null) ||( cost2 == null)) {
 
                 System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
-                System.out.println("Z uwagi na miejsce zamieszkania:");
-                System.out.println(Cost.LOCAL.toString() +" lub "+Cost.ARRIVAL.toString());
-                localOption=getInt();
-                System.out.println(localOption);
-                cost1 = Cost.createFromInt(localOption);
-                System.out.println("Autorskie koszty uzyskania przuchodu:");
-                System.out.println(Cost.AUTHOR.toString() +" lub "+Cost.NO.toString());
-                localOption=getInt();
-                cost2 = Cost.createFromInt(localOption);
+                try {
+                    System.out.println("Z uwagi na miejsce zamieszkania:");
+                    System.out.println(Cost.LOCAL.toString() + " lub " + Cost.ARRIVAL.toString());
+                    cost1 = Cost.createFromInt(getInt());
+                    System.out.println("Autorskie koszty uzyskania przuchodu:");
+                    System.out.println(Cost.AUTHOR.toString() + " lub " + Cost.NO.toString());
+                    cost2 = Cost.createFromInt(getInt());
+                } catch (ArrayIndexOutOfBoundsException e){
+                        System.err.println("Wybierz poprawne koszta ;)");
+                }
             }
 
                 System.out.println("Wartosc wynagrodzenia netto ");

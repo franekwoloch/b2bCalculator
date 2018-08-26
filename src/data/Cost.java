@@ -21,32 +21,12 @@ public enum Cost {
         return value+" - "+description;
     }
 
-    public static Cost createFromInt (int option)  {
+    public static Cost createFromInt  (int option)throws ArrayIndexOutOfBoundsException  {
         Scanner sc=new Scanner(System.in);
         Cost result=null;
-        boolean error=true;
-         do {
-            try {
-                System.out.println("input");
-                sc.nextLine();
-                result = Cost.values()[option];
-                error = false;
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println(error);
-                System.out.println("option: "+option);
-                System.err.println("Podałeś indeks wykraczający poza rozmiar tablicy!");
-
-            }
-            catch(InputMismatchException ex) {
-                System.out.println("option: "+option);
-                System.out.println("Nie podałeś liczby całkowitej, spróbuj jeszcze raz: ");
-
-            }
-        }
-        while (error);
+        result = Cost.values()[option];
         return result;
     }
-
 
 }
 
