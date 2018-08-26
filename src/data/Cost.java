@@ -1,5 +1,6 @@
 package data;
 
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -23,14 +24,26 @@ public enum Cost {
     public static Cost createFromInt (int option)  {
         Scanner sc=new Scanner(System.in);
         Cost result=null;
-        System.out.println("start fromInt");
-        try {
-            result= Cost.values()[option];
+        boolean error=true;
+         do {
+            try {
+                System.out.println("input");
+                sc.nextLine();
+                result = Cost.values()[option];
+                error = false;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(error);
+                System.out.println("option: "+option);
+                System.err.println("Podałeś indeks wykraczający poza rozmiar tablicy!");
+
+            }
+            catch(InputMismatchException ex) {
+                System.out.println("option: "+option);
+                System.out.println("Nie podałeś liczby całkowitej, spróbuj jeszcze raz: ");
+
+            }
         }
-        catch(ArrayIndexOutOfBoundsException e) {
-        System.err.println("Podałeś indeks wykraczający poza rozmiar tablicy!");
-            sc.nextLine();
-        }
+        while (error);
         return result;
     }
 

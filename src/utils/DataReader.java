@@ -206,18 +206,20 @@ public class DataReader {
     }
 
 
-    public int getInt()throws NumberFormatException{
-        int number;
-        try {
-            number = sc.nextInt();
+    public int getInt(){
+        int number=0;
+        boolean error=true;
+        while (error) {
+            try {
+                number = sc.nextInt();
+                error = false;
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.err.println("Podaj liczbe calkowita!");
+            } finally {
+                sc.nextLine();
+            }
         }
-        catch (InputMismatchException e){
-            throw new NumberFormatException("Liczba wprowadzona jest spoza zakresu");
-        }
-        finally {
-            sc.nextLine();
-        }
-        return number;
+            return number;
     }
 
 

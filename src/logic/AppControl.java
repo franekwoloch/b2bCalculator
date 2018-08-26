@@ -7,8 +7,7 @@ import utils.FileManager;
 import utils.JobUtils;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
+
 
 public class AppControl {
     //variables to interaction with user
@@ -25,10 +24,10 @@ public class AppControl {
 
         try {
             calculations = fileManager.readCalculationsFromFile();
-            System.out.println("Wczytano dane z bazy danych");
+            System.err.println("Wczytano dane z bazy danych");
         } catch (ClassNotFoundException | IOException e) {
             calculations = new Calculations();
-            System.out.println("Utworzona nowa baze danych");
+            System.err.println("Utworzona nowa baze danych");
         }
 
     }
@@ -62,10 +61,8 @@ public class AppControl {
                         exit();
                         break;
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Wprowadzono niepoprawne dane");
-            } catch (NumberFormatException | NoSuchElementException e) {
-                System.out.println("Wybrana opcja nie istnieje");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Wybrana opcja nie istnieje");
             }
         }
         //close of output stream
@@ -215,13 +212,9 @@ public class AppControl {
             return value + " - " + description;
         }
 
-        public static Option createFromInt(int option) throws NoSuchElementException {
+        public static Option createFromInt(int option) throws ArrayIndexOutOfBoundsException {
             Option result = null;
-            try {
-                result = Option.values()[option];
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new NoSuchElementException("Brak elementu o podanym ID ");
-            }
+            result = Option.values()[option];
             return result;
         }
     }
