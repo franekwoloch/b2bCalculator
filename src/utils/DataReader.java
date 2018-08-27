@@ -73,22 +73,23 @@ public class DataReader {
 
     public Uz createUzNetto()  {
         double profit;
-        double cost1 = 0;
-        double cost2 = 0;
-
+        Cost cost;
         Uz uz = new Uz();
-
+        cost=getUccCost();
+        uz.setStudentStatus(Student());
         System.out.println("Wartosc wynagrodzenia 'do reki ");
         profit = getDouble();
 
-        uz.UzNetto(profit, cost1, cost2);
+        uz.UzNetto(profit, cost);
         return uz;
     }
 
     public Uz createUzBrutto()  {
         double salary;
-        double cost = 0;
+        Cost cost;
         Uz uz = new Uz();
+        cost=getUccCost();
+        System.out.println("Podaj oczekiwane wynagrodzenie brutto");
         salary = getDouble();
         uz.UzBrutto(salary, cost);
         return uz;
@@ -199,10 +200,27 @@ public class DataReader {
     }
 
 
-    private void printCostsUCC() {
-        System.out.println("Wybierz skladowe kosztow uzyskania przychodu:");
-        System.out.println("Autorskie koszty uzyskania przuchodu:");
-        System.out.println(Cost.AUTHOR.toString() + " lub " + Cost.NORMAL.toString());
+    public boolean Student(){
+        System.out.println("Czy jestes studentem? | 0-no | 1 - yes");
+        int choice=-1;
+        boolean result=false;
+        do{
+            choice = getInt();
+            switch (choice) {
+                case 0:
+                    result= false;
+                    System.out.println("save");
+                    break;
+                case 1:
+                    result=true;
+                    System.out.println("save");
+                    break;
+                default:
+                    System.out.println("Podano niepoprawna wartosc");
+            }
+        }
+        while (choice !=0 & choice != 1);
+        return result;
     }
 
 

@@ -48,15 +48,15 @@ public class CostCalculator {
         return getTotalCost();
     }
 
-    public double nettoUccCost(double profit){
+    public double nettoUoDCost(double profit){
         double cost;
 
 
-        if (getCost2() == Cost.AUTHOR) {
+        if (getCost1() == Cost.AUTHOR) {
             cost = 0.54945 * profit;
         }
 
-        if (getCost2() == Cost.NORMAL) {
+        if (getCost1() == Cost.NORMAL) {
             cost = 0.23364 * profit;
         }
         else{

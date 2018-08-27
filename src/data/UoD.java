@@ -22,7 +22,7 @@ public class UoD extends AddCost {
 
      public void UoDSalary (double salary, Cost cost){
         setSalary(salary);
-        CostCalculator calcCost=new CostCalculator(cost,null);
+        CostCalculator calcCost=new CostCalculator(cost,Cost.NO);
         calcCost.calculateCost(salary);
         setEmployeeCost(calcCost.getTotalCost());
         setEmployerCost(salary);
@@ -36,8 +36,8 @@ public class UoD extends AddCost {
 
     public void UoDProfit (double profit, Cost cost){
         setProfit(profit);
-        CostCalculator calcCost=new CostCalculator(cost,null,0);
-        calcCost.nettoUccCost(profit);
+        CostCalculator calcCost=new CostCalculator(cost,Cost.NO);
+        calcCost.nettoUoDCost(profit);
         setEmployeeCost(calcCost.getTotalCost());
         setZusBenefit(0);
         setZusFee(0);
