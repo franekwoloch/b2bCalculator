@@ -20,24 +20,28 @@ public class UoD extends AddCost {
      */
 
 
-     public void UoDSalary (double salary, double cost){
+     public void UoDSalary (double salary, Cost cost){
         setSalary(salary);
-        setEmployeeCost(cost);
+        CostCalculator calcCost=new CostCalculator(cost,null);
+        calcCost.calculateCost(salary);
+        setEmployeeCost(calcCost.getTotalCost());
         setEmployerCost(salary);
         setZusBenefit(0);
         setZusFee(0);
-        setProfit(cost+0.82*(salary-cost));
+        setProfit(getEmployeeCost()+0.82*(salary-getEmployeeCost()));
         setPitFee(getSalary()-getProfit());
         setEffectiveTax((getSalary()-getProfit())/getSalary()*100);
     }
 
 
-    public void UoDProfit (double profit, double cost){
+    public void UoDProfit (double profit, Cost cost){
         setProfit(profit);
-        setEmployeeCost(cost);
+        CostCalculator calcCost=new CostCalculator(cost,null,0);
+        calcCost.nettoUccCost(profit);
+        setEmployeeCost(calcCost.getTotalCost());
         setZusBenefit(0);
         setZusFee(0);
-        setSalary(cost+1.18*profit);
+        setSalary(getEmployeeCost()+1.18*profit);
         setEmployerCost(getSalary());
         setPitFee(getSalary()-getProfit());
         setEffectiveTax((getSalary()-getProfit())/getSalary()*100);

@@ -29,8 +29,8 @@ public class UoP extends AddCost{
         zus.zusBase(salary);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
         zus.setHealthyBase(salary-employeeZus);
-        CostCalculator calcCost=new CostCalculator(cost1,cost2,(salary-employeeZus));
-        calcCost.calculateCost();
+        CostCalculator calcCost=new CostCalculator(cost1,cost2);
+        calcCost.calculateCost((salary-employeeZus));
         setEmployeeCost(calcCost.getTotalCost());
         totalCost=employeeZus+calcCost.getTotalCost();
         Pit pit = new Pit();
@@ -53,7 +53,8 @@ public class UoP extends AddCost{
         Zus zus = new Zus();
         zus.zusBenefit(profit);
         employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
-        CostCalculator calcCost=new CostCalculator(cost1,cost2,(profit*1.18+employeeZus)); //do poprawy
+        CostCalculator calcCost=new CostCalculator(cost1,cost2);
+        calcCost.calculateCost((profit*1.18+employeeZus));//do poprawy
         setEmployeeCost(calcCost.getTotalCost());
         totalCost=employeeZus+calcCost.getTotalCost();
         setSalary(1.18*(profit+totalCost)); //do zweryfikowania

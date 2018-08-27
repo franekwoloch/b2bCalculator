@@ -8,13 +8,14 @@ public class CostCalculator {
 
 
 
-    public CostCalculator(Cost cost1, Cost cost2, double pitBase){
+    public CostCalculator(Cost cost1, Cost cost2){
     setCost1(cost1);
     setCost2(cost2);
-    setPitBase(pitBase);
+
     }
 
-    public double calculateCost() {
+    public double calculateCost(double pitBase) {
+        setPitBase(pitBase);
         double factor1 = 0;
         double factor2 = 0;
 
@@ -44,6 +45,25 @@ public class CostCalculator {
 
 
         setTotalCost(factor1+factor2);
+        return getTotalCost();
+    }
+
+    public double nettoUccCost(double profit){
+        double cost;
+
+
+        if (getCost2() == Cost.AUTHOR) {
+            cost = 0.54945 * profit;
+        }
+
+        if (getCost2() == Cost.NORMAL) {
+            cost = 0.23364 * profit;
+        }
+        else{
+            cost=0;
+        }
+
+        setTotalCost(cost);
         return getTotalCost();
     }
 
