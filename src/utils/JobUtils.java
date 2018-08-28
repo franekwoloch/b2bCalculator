@@ -10,6 +10,8 @@ public class JobUtils {
         System.out.println("Wyplata 'na reke': " + job.getProfit());
         System.out.println("Koszt pracodawcy: " + job.getEmployerCost());
         System.out.println("Efektywne obciazenie podatkowe: " + job.getEffectiveTax() + "%");
+        System.out.println("Podatek do zaplaty: "+job.getPitFee());
+        System.out.println("ZUS do zaplaty: "+job.getZusFee());
     }
 
     public static Record saveRecord(Job job) {

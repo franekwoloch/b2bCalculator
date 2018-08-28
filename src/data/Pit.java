@@ -27,8 +27,8 @@ public class Pit {
         double income;
         setProfit(profit);
         setCost(cost);
-        income=(profit+1.18*cost-healthyDeprecation)/0.82;
-        tax=income-cost-profit;
+        income=profit/0.82+cost+0.2*healthyDeprecation;
+        tax=income-cost-profit-healthyDeprecation;
         setTax(tax);
         setIncome(income);
     }
