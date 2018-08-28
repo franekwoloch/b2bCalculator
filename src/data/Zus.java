@@ -18,7 +18,7 @@ public class Zus {
 
 
 
-    //CONSTRUCOR
+
 
       public void zusBenefit (double benefit){
         setBenefit(benefit);
@@ -30,6 +30,8 @@ public class Zus {
         setAccidentFee(0.018*getBase());//składka wypadkowa 1.8%
         setJobFound(0.0245*getBase()); //Fundusz pracy 2.45%
         setFgspFee(0.001*getBase());
+        setCostFee(getRetireFee()+getDisabilityFee()+getIllnessFee()+getAccidentFee());
+        setTotalFee(getHealthyFee()+getCostFee()+getJobFound()+getFgspFee()); //Łączna suma składek
     }
 
     public void zusBase (double base){
@@ -42,20 +44,8 @@ public class Zus {
         setAccidentFee(0.018*getBase());//składka wypadkowa 1.8%
         setJobFound(0.0245*getBase()); //Fundusz pracy 2.45%
         setFgspFee(0.001*getBase());
-    }
-
-
-//METHODS
-
-    public double costFee() {
-
-        setCostFee(getRetireFee()+getDisabilityFee()+getIllnessFee()+getAccidentFee()); //Składka stanowiąca koszt
-        return getCostFee();
-    }
-
-    public double totalFee() {
+        setCostFee(getRetireFee()+getDisabilityFee()+getIllnessFee()+getAccidentFee());
         setTotalFee(getHealthyFee()+getCostFee()+getJobFound()+getFgspFee()); //Łączna suma składek
-        return getTotalFee();
     }
 
 

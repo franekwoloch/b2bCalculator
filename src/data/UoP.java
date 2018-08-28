@@ -36,9 +36,8 @@ public class UoP extends AddCost{
         Pit pit = new Pit();
         pit.pitincome(salary,totalCost, zus.getHealthyDeprecation());
         setPitFee(pit.getTax());
-        setProfit(pit.getIncome()-zus.getHealthyFee());
-        setZusBenefit(getProfit());
-        setZusFee(zus.totalFee());
+        setProfit(getSalary()-employeeZus-zus.getHealthyFee()-getPitFee());
+        setZusFee(zus.getTotalFee());
         setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
         setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
 
@@ -62,10 +61,21 @@ public class UoP extends AddCost{
         Pit pit = new Pit();
         pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
         setPitFee(pit.getTax());
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
         setEmployerCost(getSalary()+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
         setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
 
+    }
+
+    public void AlterUoPNetto(double profit, Cost cost1, Cost cost2){
+        double tempSalary;
+        double tempProfit;
+        tempSalary=1.4*profit;
+        do{UoPBrutto(tempSalary, cost1,cost2);
+            tempProfit=getProfit();
+            tempSalary=tempSalary+1.4*(profit-tempProfit);
+
+        } while ((Math.abs(tempProfit-profit))<=0.02);
     }
 
 

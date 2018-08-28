@@ -26,10 +26,10 @@ public class B2b extends Job {
         Zus zus = new Zus();
         zus.zusBenefit(getZusBenefit());
         Pit pit = new Pit();
-        pit.pitincome(invoice, zus.costFee(), zus.getHealthyDeprecation());
-        setProfit(invoice - zus.totalFee() - pit.getTax());
+        pit.pitincome(invoice, zus.getCostFee(), zus.getHealthyDeprecation());
+        setProfit(invoice - zus.getTotalFee() - pit.getTax());
         setPitFee(pit.getTax());
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
         setEffectiveTax((invoice-getProfit())/invoice*100);
         setEmployerCost(invoice);
 
@@ -43,11 +43,11 @@ public class B2b extends Job {
         Zus zus = new Zus();
         zus.zusBenefit(getZusBenefit());
         Pit pit = new Pit();
-        pit.pitprofit(profit, zus.costFee(), zus.getHealthyDeprecation());
-        invoice = profit + zus.totalFee() + pit.getTax();
+        pit.pitprofit(profit, zus.getCostFee(), zus.getHealthyDeprecation());
+        invoice = profit + zus.getTotalFee() + pit.getTax();
         setSalary(invoice);
         setPitFee(pit.getTax());
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
         setEffectiveTax((invoice-getProfit())/invoice*100);
         setEmployerCost(getSalary());
     }

@@ -41,7 +41,7 @@ public class Uz extends AddCost {
         setZusBenefit(getProfit());
         setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
         setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
 
     }
 
@@ -64,10 +64,10 @@ public class Uz extends AddCost {
         Pit pit = new Pit();
         pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
         setPitFee(pit.getTax());
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
         setEmployerCost(getSalary()+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
         setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
-        setZusFee(zus.totalFee());
+        setZusFee(zus.getTotalFee());
     }
 
     public boolean isStudentStatus() {
