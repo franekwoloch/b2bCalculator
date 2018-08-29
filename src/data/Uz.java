@@ -46,28 +46,16 @@ public class Uz extends AddCost {
     }
 
     public void UzNetto (double profit, Cost cost){
-        double totalCost;
-        double employeeZus;
-        setProfit(profit);
-        Zus zus = new Zus();
-        if (isStudentStatus()){
-            zus.zusBenefit(0);
-        }
-        else zus.zusBenefit(profit);
-        employeeZus=zus.getRetireFee()/2+zus.getDisabilityFee()*0.1875+zus.getIllnessFee();
-        CostCalculator calcCost=new CostCalculator(cost,Cost.NO);
-        calcCost.calculateCost((profit*1.18+employeeZus));//do poprawy
-        setEmployeeCost(calcCost.getTotalCost());
-        totalCost=employeeZus+getEmployeeCost();
-        setSalary(1.18*(profit+totalCost));
-        zus.setHealthyBase(getSalary()-employeeZus);
-        Pit pit = new Pit();
-        pit.pitprofit(profit,totalCost,zus.getHealthyDeprecation());
-        setPitFee(pit.getTax());
-        setZusFee(zus.getTotalFee());
-        setEmployerCost(getSalary()+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
-        setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
-        setZusFee(zus.getTotalFee());
+        double tempSalary;
+        double tempProfit;
+        double difference;
+        tempSalary=profit*1.4;
+        do{UzBrutto(tempSalary, cost);
+            tempProfit=getProfit();
+            difference=profit-tempProfit;
+            tempSalary=tempSalary+difference;
+
+        } while ((Math.abs(difference)>0.001));
     }
 
     public boolean isStudentStatus() {
