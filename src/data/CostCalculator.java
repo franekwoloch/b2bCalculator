@@ -19,16 +19,31 @@ public class CostCalculator {
         double factor1 = 0;
         double factor2 = 0;
 
-        if (getCost1() == Cost.LOCAL) {
+        if ((getCost1() == Cost.LOCAL) ||(getCost2() == Cost.LOCAL)){
             factor1 = 111.25;
+        }
+        if (getCost2() == Cost.LOCAL){
+            factor2 = 111.25;
+        }
+
+        if (getCost1() == Cost.ARRIVAL) {
+            factor1 = 139.06;
         }
 
         if (getCost2() == Cost.ARRIVAL) {
-            factor1 = 139.06;
+            factor2 = 139.06;
+        }
+
+        if (getCost1() == Cost.AUTHOR) {
+            factor1 = 0.5 * getPitBase();
         }
 
         if (getCost2() == Cost.AUTHOR) {
             factor2 = 0.5 * getPitBase();
+        }
+
+        if ((getCost1() == Cost.NORMAL)||(getCost2() == Cost.NORMAL)) {
+            factor1 = 0.2 * getPitBase();
         }
 
         if (getCost2() == Cost.NORMAL) {
