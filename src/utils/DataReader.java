@@ -66,7 +66,7 @@ public class DataReader {
         getCostsUoP();
         System.out.println("Wartosc wynagrodzenia netto ");
         profit = getDouble();
-        uop.AlterUoPNetto(profit, costs[0], costs[1]);
+        uop.UoPNetto(profit, costs[0], costs[1]);
         return uop;
     }
 
