@@ -169,14 +169,13 @@ public class DataReader {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.err.println("Wybierz poprawne koszta ;)");
             }
-            //Do napisania kontrola kosztow
-            /*
-            if ((cost2!=Cost.AUTHOR||cost1!=Cost.NO)||(cost1!=Cost.LOCAL||cost1!=Cost.ARRIVAL)){
-                System.out.println("Niepoprawne dane");
+
+            if (!(cost2==Cost.AUTHOR||cost1==Cost.NO)||!(cost1==Cost.LOCAL||cost1==Cost.ARRIVAL)){
+                System.err.println("Wybierz poprawne koszta!");;
                 cost1=null;
                 cost2=null;
             }
-            */
+
         }
 
         costs[0] = cost1;
@@ -194,7 +193,11 @@ public class DataReader {
                 cost = Cost.createFromInt(getInt());
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.err.println("Wybierz poprawne koszta ;)");
-            } //zaimplementowac kontrole kosztow
+            }
+            if (!((cost==Cost.AUTHOR)||(cost==Cost.NORMAL))){
+                System.err.println("Wybierz poprawne koszta!");
+                cost=null;
+            }
         }
         return cost;
     }

@@ -2,8 +2,6 @@ package data;
 
 public class UoD extends AddCost {
 
-
-
     /*
     ZMIENNE KLASY JOB:
     private double profit;  //dochod --> wartosc netto
