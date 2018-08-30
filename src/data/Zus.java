@@ -38,7 +38,7 @@ public class Zus {
     }
 
     public void zusBase (double base){
-        if base>11107.50){
+        if( base>11107.50){
             base=11107.50;
         }
         setBenefit(0.707578*base);
@@ -145,7 +145,7 @@ public class Zus {
 
     public void setHealthyBase(double healthyBase) {
         this.healthyBase = healthyBase;
-        if healthyBase>11107.50{
+        if (healthyBase>11107.50){
             this.healthyBase=11107.50;
         }
     }
