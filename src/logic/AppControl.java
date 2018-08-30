@@ -71,13 +71,15 @@ public class AppControl {
 
     private void addB2b() {
 
-        int option=0;
-        System.out.println("1-znam wartosc faktury || 2- wiem ile chce zarobic ");
+        int option=-1;
+        System.out.println("1-znam wartosc faktury || 2- wiem ile chce zarobic || 0 - EXIT ");
         B2b b2b = new B2b();
-        while (option != 1 & option != 2){
+        while (option != 1 & option != 2 & option!=0){
 
                 option = dataReader.getInt();
                 switch (option) {
+                    case 0:
+                        break;
                     case 1:
                         b2b = dataReader.createB2bInvoice();
                         break;
@@ -88,8 +90,10 @@ public class AppControl {
                         System.out.println("Podano niepoprawna wartosc");
                     }
             }
-        JobUtils.showResult(b2b);
-        CalculationsUtils.saveCalculations(b2b,calculations);
+            if (option!=0) {
+                JobUtils.showResult(b2b);
+                CalculationsUtils.saveCalculations(b2b, calculations);
+            }
 
     }
 
@@ -97,13 +101,15 @@ public class AppControl {
     private void addUoP() {
 
         int option=-1;
-        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto || 0 - EXIT");
         UoP uop=new UoP();
-        while (option != 1 & option != 2) {
+        while (option != 1 & option != 2 & option!=0) {
 
             option = dataReader.getInt();
 
             switch (option) {
+                case 0:
+                    break;
                 case 1:
                     uop = dataReader.createUopNetto();
                     break;
@@ -114,21 +120,24 @@ public class AppControl {
             }
 
         }
-
+        if (option!=0) {
             JobUtils.showResult(uop);
-            CalculationsUtils.saveCalculations(uop,calculations);
+            CalculationsUtils.saveCalculations(uop, calculations);
+        }
     }
 
 
     private void addUz() {
         int option=-1;
-        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto || 0 - EXIT ");
         Uz uz=new Uz();
-        while (option != 1 & option != 2) {
+        while (option != 1 & option != 2 & option!=0) {
 
             option = dataReader.getInt();
 
             switch (option) {
+                case 0:
+                    break;
                 case 1:
                     uz = dataReader.createUzNetto();
                     break;
@@ -139,21 +148,24 @@ public class AppControl {
             }
 
         }
-
-        JobUtils.showResult(uz);
-        CalculationsUtils.saveCalculations(uz,calculations);
+        if (option!=0) {
+            JobUtils.showResult(uz);
+            CalculationsUtils.saveCalculations(uz, calculations);
+        }
     }
 
 
     private void addUoD() {
         int option=-1;
-        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto ");
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto || 0 - EXIT ");
         UoD uod=new UoD();
-        while (option != 1 & option != 2) {
+        while (option != 1 & option != 2 & option!=0) {
 
             option = dataReader.getInt();
 
             switch (option) {
+                case 0:
+                    break;
                 case 1:
                     uod = dataReader.createUoDNetto();
                     break;
@@ -164,9 +176,10 @@ public class AppControl {
             }
 
         }
-
-        JobUtils.showResult(uod);
-        CalculationsUtils.saveCalculations(uod,calculations);
+        if (option!=0) {
+            JobUtils.showResult(uod);
+            CalculationsUtils.saveCalculations(uod, calculations);
+        }
     }
 
 
