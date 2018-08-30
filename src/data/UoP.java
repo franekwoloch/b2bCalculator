@@ -39,7 +39,7 @@ public class UoP extends AddCost{
         setProfit(getSalary()-employeeZus-zus.getHealthyFee()-getPitFee());
         setZusFee(zus.getTotalFee());
         setEmployerCost(salary+zus.getRetireFee()/2+zus.getAccidentFee()+zus.getDisabilityFee()*0.8125+zus.getJobFound()+zus.getFgspFee());
-        setEffectiveTax((getEmployeeCost()-getProfit())/getEmployerCost()*100);
+        setEffectiveTax((getEmployerCost()-getProfit())/getEmployerCost()*100);
 
     }
 
