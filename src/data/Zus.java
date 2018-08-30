@@ -23,6 +23,9 @@ public class Zus {
       public void zusBenefit (double benefit){
         setBenefit(benefit);
         setBase(1.413271752*benefit);
+        if (getBase()>11107.50){
+            setBase(11107.50);
+        }
         setHealthyFee(0.09*getHealthyBase());
         setRetireFee(0.1952 * getBase()); //Składka emerytalna 19.52%
         setDisabilityFee(0.08*getBase()); //Składka rentowa 8%;
@@ -35,6 +38,9 @@ public class Zus {
     }
 
     public void zusBase (double base){
+        if base>11107.50){
+            base=11107.50;
+        }
         setBenefit(0.707578*base);
         setBase(base);
         setHealthyFee(0.09*getHealthyBase());
@@ -139,6 +145,9 @@ public class Zus {
 
     public void setHealthyBase(double healthyBase) {
         this.healthyBase = healthyBase;
+        if healthyBase>11107.50{
+            this.healthyBase=11107.50;
+        }
     }
 
     public double getFgspFee() {
