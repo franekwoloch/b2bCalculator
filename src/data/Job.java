@@ -1,5 +1,7 @@
 package data;
 
+import utils.CalculationsUtils;
+
 public class Job {
 
     private double profit;  //dochod
@@ -15,7 +17,8 @@ public class Job {
     }
 
     public void setProfit(double profit) {
-        this.profit = profit;
+        this.profit = CalculationsUtils.round(profit,2);
+
     }
 
     public double getSalary() {
@@ -23,7 +26,7 @@ public class Job {
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        this.salary = CalculationsUtils.round(salary,2);
     }
 
     public double getPitFee() {
@@ -31,7 +34,7 @@ public class Job {
     }
 
     public void setPitFee(double pitFee) {
-        this.pitFee = pitFee;
+        this.pitFee = CalculationsUtils.round(pitFee,2);
     }
 
     public double getEmployerCost() {
@@ -39,7 +42,7 @@ public class Job {
     }
 
     public void setEmployerCost(double employerCost) {
-        this.employerCost = employerCost;
+        this.employerCost = CalculationsUtils.round(employerCost,2);
     }
 
     public double getEffectiveTax() {
@@ -47,7 +50,7 @@ public class Job {
     }
 
     public void setEffectiveTax(double effectiveTax) {
-        this.effectiveTax = effectiveTax;
+        this.effectiveTax = CalculationsUtils.round(effectiveTax,2);
     }
 
     public double getZusBenefit() {
@@ -55,7 +58,7 @@ public class Job {
     }
 
     public void setZusBenefit(double zusBenefit) {
-        this.zusBenefit = zusBenefit;
+        this.zusBenefit = CalculationsUtils.round(zusBenefit,2);
     }
 
     public double getZusFee() {
@@ -63,7 +66,7 @@ public class Job {
     }
 
     public void setZusFee(double zusFee) {
-        this.zusFee = zusFee;
+        this.zusFee = CalculationsUtils.round(zusFee,2);
     }
 
 

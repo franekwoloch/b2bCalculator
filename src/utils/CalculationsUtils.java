@@ -46,4 +46,12 @@ public class CalculationsUtils {
         }
     }
 
+    public static double round(double number, int size){
+        double force=Math.pow(10,size);
+        double tempNumber=force*number;
+        tempNumber=Math.round(tempNumber);
+        number=tempNumber/force;
+        return number;
+    }
+
 }
