@@ -1,9 +1,10 @@
 package data;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Arrays;
 
-public class Record {
+public class Record implements Serializable{
 
 public static int recordID=0;
     private int id;

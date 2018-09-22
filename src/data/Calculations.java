@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Calculations implements Serializable {
 
         private static final long serialVersionUID = 2995794334600947814L;
-        public static final int INITIAL_CAPACITY=1;
+        public static final int INITIAL_CAPACITY=10;
 
 
         private Record[] calculations;

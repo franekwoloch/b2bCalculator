@@ -2,7 +2,9 @@ package data;
 
 import utils.CalculationsUtils;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
 
     private double profit;  //dochod
     private double salary;  //pensja
