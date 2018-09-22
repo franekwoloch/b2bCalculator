@@ -158,20 +158,20 @@ public class DataReader {
 
         while ((cost1 == null) || (cost2 == null)) {
 
-            System.out.println("Wybierz skladowe kosztow uzyskania przuchodu:");
+            System.out.println("Wybierz skladowe kosztow uzyskania przychodu:");
             try {
                 System.out.println("Z uwagi na miejsce zamieszkania:");
                 System.out.println(Cost.LOCAL.toString() + " lub " + Cost.ARRIVAL.toString());
                 cost1 = Cost.createFromInt(getInt());
-                System.out.println("Autorskie koszty uzyskania przuchodu:");
+                System.out.println("Autorskie koszty uzyskania przychodu:");
                 System.out.println(Cost.AUTHOR.toString() + " lub " + Cost.NO.toString());
                 cost2 = Cost.createFromInt(getInt());
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.err.println("Wybierz poprawne koszta ;)");
             }
 
-            if (!(cost2==Cost.AUTHOR||cost1==Cost.NO)||!(cost1==Cost.LOCAL||cost1==Cost.ARRIVAL)){
-                System.err.println("Wybierz poprawne koszta!");;
+            if (!(cost2==Cost.AUTHOR||cost2==Cost.NO)||!(cost1==Cost.LOCAL||cost1==Cost.ARRIVAL)){
+                System.err.println("Wybierz poprawne koszta!");
                 cost1=null;
                 cost2=null;
             }

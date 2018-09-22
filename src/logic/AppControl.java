@@ -101,9 +101,10 @@ public class AppControl {
     private void addUoP() {
 
         int option=-1;
-        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto || 0 - EXIT");
+        System.out.println("1-znam wynagrodzenie netto || 2- znam wynagrodzenie brutto || 0 - EXIT blbllbl");
+
         UoP uop=new UoP();
-        while (option != 1 & option != 2 & option!=0) {
+        while (!(option == 1 || option == 2 || option==0)) {
 
             option = dataReader.getInt();
 
@@ -115,15 +116,19 @@ public class AppControl {
                     break;
                 case 2:
                     uop = dataReader.createUopBrutto();
+                    break;
                 default:
                     System.out.println("Podano niepoprawna wartosc");
             }
 
+            if (option==1 || option==2) {
+                JobUtils.showResult(uop);
+                CalculationsUtils.saveCalculations(uop, calculations);
+                option=0;
+                }
+
         }
-        if (option!=0) {
-            JobUtils.showResult(uop);
-            CalculationsUtils.saveCalculations(uop, calculations);
-        }
+
     }
 
 
