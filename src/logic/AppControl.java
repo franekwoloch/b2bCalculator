@@ -48,6 +48,7 @@ public class AppControl {
                         break;
                     case UOP:
                         addUoP();
+                        break;
                     case UZ:
                         addUz();
                         break;
@@ -125,10 +126,8 @@ public class AppControl {
                 JobUtils.showResult(uop);
                 CalculationsUtils.saveCalculations(uop, calculations);
                 option=0;
-                }
-
+            }
         }
-
     }
 
 
