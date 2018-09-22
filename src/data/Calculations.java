@@ -9,17 +9,17 @@ public class Calculations implements Serializable {
         public static final int INITIAL_CAPACITY=10;
 
 
-        private Record[] calculations;
+        private Record[] calculationsDataBase;
         private int calculationNumber;
 
 
     public Calculations(){
 
-            calculations=new Record[INITIAL_CAPACITY];
+            calculationsDataBase=new Record[INITIAL_CAPACITY];
         }
 
         public Record[] getCalculations(){
-            return calculations;
+            return calculationsDataBase;
         }
 
         public int getCalculationNumber(){
@@ -35,15 +35,15 @@ public class Calculations implements Serializable {
             final int NOT_FOUND=-1;
             int found=NOT_FOUND;
             int i=0;
-            while (i<calculations.length&&found==NOT_FOUND){
-                if (record.equals(calculations[i])){
+            while (i<calculationsDataBase.length&&found==NOT_FOUND){
+                if (record.equals(calculationsDataBase[i])){
                     found=i;
                 }else {
                     i++;
                 }
             }
             if (found!=NOT_FOUND){
-                System.arraycopy(calculations, found+1,calculations, found,calculations.length-found-1);
+                System.arraycopy(calculationsDataBase, found+1,calculationsDataBase, found,calculationsDataBase.length-found-1);
                 calculationNumber--;
             }
         }
@@ -51,10 +51,10 @@ public class Calculations implements Serializable {
 
 
     public void addRecord(Record record)throws ArrayIndexOutOfBoundsException{
-        if (calculationNumber==calculations.length) {
-            calculations= Arrays.copyOf(calculations, calculations.length*2);
+        if (calculationNumber==calculationsDataBase.length) {
+            calculationsDataBase= Arrays.copyOf(calculationsDataBase, calculationsDataBase.length*2);
         }
-        calculations[calculationNumber]=record;
+        calculationsDataBase[calculationNumber]=record;
         calculationNumber++;
     }
 

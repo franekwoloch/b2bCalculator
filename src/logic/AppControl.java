@@ -55,6 +55,9 @@ public class AppControl {
                     case UOD:
                         addUoD();
                         break;
+                    case COMPARE:
+                        compare();
+                        break;
                     case PRINT:
                         printCalculations();
                         break;
@@ -186,6 +189,19 @@ public class AppControl {
         }
     }
 
+    private void compare(){
+        /*
+        boolean lastCalculation;
+        Job job;
+        Record record;
+        record=calculations.getCalculations()[calculations.getCalculationNumber()];
+        job=record.getJob();
+        System.out.println("Czy porownac wzgledem ostatniej kalkulacji?");
+        System.out.println("true or false");
+        lastCalculation=dataReader.getBoolean();*/
+        CalculationsUtils.compareCalculations(false);
+
+    }
 
     private void printCalculations() {
         CalculationsUtils.printCalculations(calculations);
@@ -213,7 +229,8 @@ public class AppControl {
         UOP(2, "Umowa o prace"),
         UZ(3, "Umowa zlecenie"),
         UOD(4, "Umowa o dzielo"),
-        PRINT(5, "Pokaz zapisane kalkulacje");
+        COMPARE(5, "Porownaj rozne umowy"),
+        PRINT(6, "Pokaz zapisane kalkulacje");
 
         private int value;
         private String description;

@@ -134,6 +134,22 @@ public class DataReader {
         return number;
     }
 
+    public boolean getBoolean() {
+        boolean yesorno=false;
+        boolean error = true;
+        while (error) {
+            try {
+                yesorno = sc.nextBoolean();
+                error = false;
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.err.println("Podaj wartosc logiczna!");
+            } finally {
+                sc.nextLine();
+            }
+        }
+        return yesorno;
+    }
+
     public double getDouble() {
         double number = 0;
         boolean error = true;
