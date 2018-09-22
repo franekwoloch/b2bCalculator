@@ -50,4 +50,8 @@ public static int recordID=0;
         this.job = job;
     }
 
+    @Override
+    public String toString() {
+        return getDescription()+": wynagrodzenie do reki: "+job.getProfit()+" PLN | koszt pracodawcy: "+job.getEmployerCost()+" PLN | efektywne obciazenie podatkowe: "+job.getEffectiveTax()+"%";
+    }
 }
