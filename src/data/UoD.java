@@ -26,7 +26,7 @@ public class UoD extends AddCost {
         setEmployerCost(salary);
         setZusBenefit(0);
         setZusFee(0);
-        setProfit(getEmployeeCost()+0.82*(salary-getEmployeeCost()));
+        setProfit(getEmployeeCost()+(1-Job.TAX)*(salary-getEmployeeCost()));
         setPitFee(getSalary()-getProfit());
         setEffectiveTax((getSalary()-getProfit())/getSalary()*100);
     }

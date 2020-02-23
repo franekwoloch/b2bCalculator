@@ -5,6 +5,7 @@ import utils.CalculationsUtils;
 import java.io.Serializable;
 
 public class Job implements Serializable {
+    public final static double TAX=0.17; //w procentach
 
     private double profit;  //dochod
     private double salary;  //pensja

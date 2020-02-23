@@ -15,7 +15,7 @@ public class Pit {
         double profit;
         setIncome(income);
         setCost(cost);
-        tax=0.18*(income-cost)-healthyDeprecation-46.33 ;
+        tax=Job.TAX*(income-cost)-healthyDeprecation-46.33 ;
         setTax(tax);
         profit=income-cost-tax-healthyDeprecation*1.2;
         setProfit(profit);
@@ -27,7 +27,7 @@ public class Pit {
         double income;
         setProfit(profit);
         setCost(cost);
-        income=profit/0.82+cost+0.2*healthyDeprecation;
+        income=profit/(1-Job.TAX)+cost+0.2*healthyDeprecation;
         tax=income-cost-profit-healthyDeprecation-46.33;
         setTax(tax);
         setIncome(income);
